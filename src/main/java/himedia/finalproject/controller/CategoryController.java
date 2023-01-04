@@ -2,9 +2,10 @@ package himedia.finalproject.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/menu")
+@RequestMapping(value = "/menu")
 @Controller
 public class CategoryController {
 	
@@ -33,9 +34,14 @@ public class CategoryController {
 		return "menu/category/things";
 	}
 	
-	@GetMapping("/cluv")
-	public String cluv() {
-		return "menu/cluv/cluv";
+	@GetMapping("/cluv/write")
+	public String cluvWrite() {
+		return "menu/cluv/cluv_write";
+	}
+	
+	@PostMapping("/cluv/write")
+	public String afterWrite() {
+		return "redirect:/menu/cluv";
 	}
 
 }

@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link
       rel="stylesheet"
@@ -12,35 +10,56 @@
   </head>
   <body>
     <div class="container w-75">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
+      <form action="/menu/cluv/add" method="post">
+        <div class="mb-3">
+          <label for="cluvId" class="form-label">No.</label>
+          <input
+            class="form-control"
+            id="cluvId"
+            name="cluvId"
+            type="text"
+            aria-label="Disabled input example"
+            disabled
+            readonly
+            th:value="${cluv.cluvId}"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="title" class="form-label">title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            name="title"
+            aria-label="Disabled input example"
+            disabled
+            readonly
+            placeholder="제목을 입력하세요"
+            th:value="${cluv.title}"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="contents" class="form-label">contents</label>
+          <textarea
+            class="form-control"
+            id="contents"
+            name="contents"
+            rows="10"
+            aria-label="Disabled input example"
+            disabled
+            readonly
+            th:value="${cluv.contents}"
+            th:text="${cluv.contents}"
+          ></textarea>
+        </div>
+        <input
+          type="button"
+          onclick="location.href='/menu/cluv'"
+          class="btn btn-light"
+          value="list"
+        />
+        <button type="submit" class="btn btn-dark">write</button>
+      </form>
     </div>
   </body>
 </html>
