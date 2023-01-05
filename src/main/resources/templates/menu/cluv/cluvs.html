@@ -11,13 +11,14 @@
     />
   </head>
   <body>
+    <th:block th:replace="/fragments/header :: header"></th:block>
     <div class="container w-75">
       <button
         type="button"
         class="btn btn-dark"
         onclick="location.href='/menu/cluv/write'"
       >
-        Dark
+        write
       </button>
       <table class="table table-hover">
         <thead>
@@ -30,8 +31,20 @@
         </thead>
         <tbody>
           <tr th:each="cluv: ${cluvs}">
-            <td th:text="${cluv.cluvId}">1</td>
-            <td th:text="${cluv.title}">Mark</td>
+            <td>
+              <a
+                th:text="${cluv.cluvId}"
+                th:href="@{|/menu/cluv/${cluv.cluvId}|}"
+                >1</a
+              >
+            </td>
+            <td>
+              <a
+                th:text="${cluv.title}"
+                th:href="@{|/menu/cluv/${cluv.cluvId}|}"
+                >Mark</a
+              >
+            </td>
             <td th:text="${cluv.createTime}">time</td>
           </tr>
         </tbody>

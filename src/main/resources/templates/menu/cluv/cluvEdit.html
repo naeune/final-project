@@ -11,10 +11,7 @@
   <body>
     <th:block th:replace="/fragments/header :: header"></th:block>
     <div class="container w-75">
-      <!-- <input -->
-      <!-- type="button" onclick="location.href='/menu/cluv'" class="btn btn-light" -->
-      <!-- value="list" /> -->
-      <form>
+      <form method="post">
         <div class="mb-3">
           <label for="cluvId" class="form-label">No.</label>
           <input
@@ -35,9 +32,6 @@
             class="form-control"
             id="title"
             name="title"
-            aria-label="Disabled input example"
-            disabled
-            readonly
             placeholder="제목을 입력하세요"
             th:value="${cluv.title}"
           />
@@ -49,25 +43,21 @@
             id="contents"
             name="contents"
             rows="10"
-            aria-label="Disabled input example"
-            disabled
-            readonly
             th:value="${cluv.contents}"
             th:text="${cluv.contents}"
           ></textarea>
         </div>
         <input
           type="button"
+          onclick="location.href='/menu/cluv'"
+          class="btn btn-light"
+          value="cancel"
+        />
+        <button
+          type="submit" class="btn btn-dark"
           th:onclick="|location.href='@{/menu/cluv/edit/{cluvId}(cluvId=${cluv.cluvId})}'|"
-          class="btn btn-dark"
-          value="edit"
-        />
-        <input
-          type="button"
-          class="btn btn-dark"
-          value="delete"
-          th:onclick="|location.href='@{/menu/cluv/delete/{cluvId}(cluvId=${cluv.cluvId})}'|"
-        />
+          />confirm
+        </button>
       </form>
     </div>
   </body>

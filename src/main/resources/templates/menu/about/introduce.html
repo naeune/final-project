@@ -2,9 +2,30 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
   </head>
   <body>
-    <h1>introduce.html</h1>
+    <th:block th:replace="/fragments/header :: header"></th:block>
+    <div class="container w-75">
+      <img src="/assets/logoimage.png" class="img-fluid" alt="logo image" />
+      <figure class="text-center">
+        <blockquote class="blockquote">
+          <p>취향 세팅 플랫폼, setyourclover</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+          collect your preferences(&hearts;)
+          <cite title="Source Title">make your own clover(&clubs;)</cite>
+        </figcaption>
+      </figure>
+
+      <div>
+        각자의 취향을 모아 자신만의 클로버를 심을 수 있는 공간으로<br />
+        취향 소비가 주를 이루는 소비트렌에 맞춰 서로의 관심사를 공유하고 자신의
+        취향을 찾을 수 있는 플랫폼입니다.
+      </div>
+    </div>
   </body>
 </html>

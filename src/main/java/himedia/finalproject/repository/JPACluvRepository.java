@@ -32,21 +32,23 @@ public class JPACluvRepository implements CluvInterfaceRepository {
 	}
 
 	@Override
-	public Cluv findByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Cluv> findAll() {
 		log.info("게시글 목록 조회");
 		return em.createQuery("select c from Cluv c", Cluv.class).getResultList();
 	}
 
 	@Override
-	public Cluv delete(Cluv cluv) {
-		// TODO Auto-generated method stub
-		return null;
+	public void delete(Long id) {
+		em.remove(findById(id));
+	}
+
+	@Override
+	public Cluv update(Cluv updateCluv) {
+		Cluv cluv = em.find(Cluv.class, updateCluv.getCluvId());
+		cluv.setTitle(updateCluv.getTitle());
+		cluv.setContents(updateCluv.getContents());
+		cluv.setModifiedTime(updateCluv.getModifiedTime());
+		return cluv;
 	}
 	
 	

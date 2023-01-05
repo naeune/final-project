@@ -53,5 +53,26 @@ public class CluvController {
 		attributes.addAttribute("cluvId", savedCluv.getCluvId());
 		return "redirect:/menu/cluv/{cluvId}";
 	}
+	
+	@GetMapping("delete/{cluvId}")
+	public String deleteCluv(@PathVariable Long cluvId) {
+		repository.delete(cluvId);
+		return "redirect:/menu/cluv";
+	}
+	
+	@GetMapping("/edit/{cluvId}")
+	public String editCluv(@PathVariable Long cluvId, Model model) {
+		Cluv cluv = repository.findById(cluvId);
+		model.addAttribute("cluv", cluv);
+		return "menu/cluv/cluvEdit";
+	}
+	
+	@PostMapping("/edit/{cluvId}")
+	public String updateCluv(@PathVariable Long cluvId, @ModelAttribute Cluv cluv) {
+		repository.update(cluv);
+		return "redirect:/menu/cluv/{cluvId}";
+		
+		
+	}
 
 }

@@ -36,7 +36,7 @@ public class CategoryController {
 	
 	@GetMapping("/cluv/write")
 	public String cluvWrite() {
-		return "menu/cluv/cluv_write";
+		return "menu/cluv/cluvWrite";
 	}
 	
 	@PostMapping("/cluv/write")

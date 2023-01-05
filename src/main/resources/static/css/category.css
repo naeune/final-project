@@ -1,0 +1,17 @@
+.sidemenu {
+  width: 200px;
+  position: fixed;
+  height: 100%;
+  padding-top: ;
+}
+
+.sidemenu li {
+  list-style: none;
+}
+
+.sidemenu a {
+  display: block;
+  width: 200px;
+  text-align: center;
+  text-decoration: none;
+}

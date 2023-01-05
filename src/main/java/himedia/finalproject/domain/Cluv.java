@@ -11,6 +11,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/*
+[테이블 생성 쿼리] -----------------------------
+create table cluv (
+cluv_id  int auto_increment,
+title varchar(255),
+contents text,
+create_time char(10),
+modified_time char(10),
+constraint pk_cluv_no primary key(cluv_id)
+);
+---------------------------------------------
+ */
+
+
 @Entity
 @Setter @Getter
 @NoArgsConstructor

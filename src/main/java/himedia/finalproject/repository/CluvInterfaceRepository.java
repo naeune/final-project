@@ -8,8 +8,8 @@ public interface CluvInterfaceRepository {
 
 	Cluv save(Cluv cluv);
 	Cluv findById(Long id);
-	Cluv findByName(String name);
 	List<Cluv> findAll();
-	Cluv delete(Cluv cluv);	
+	Cluv update(Cluv updateCluv);
+	void delete(Long id);	
 	
 }
