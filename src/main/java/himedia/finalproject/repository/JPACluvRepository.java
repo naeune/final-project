@@ -38,10 +38,10 @@ public class JPACluvRepository implements CluvInterfaceRepository {
 	}
 
 	@Override
-	public void delete(Long id) {
+	public void remove(Long id) {
 		em.remove(findById(id));
 	}
-
+	
 	@Override
 	public Cluv update(Cluv updateCluv) {
 		Cluv cluv = em.find(Cluv.class, updateCluv.getCluvId());
@@ -49,6 +49,11 @@ public class JPACluvRepository implements CluvInterfaceRepository {
 		cluv.setContents(updateCluv.getContents());
 		cluv.setModifiedTime(updateCluv.getModifiedTime());
 		return cluv;
+	}
+	
+	@Override
+	public void deleteAll() {
+		em.createQuery("delete c from Cluv c");
 	}
 	
 	

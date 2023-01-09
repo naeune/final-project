@@ -10,6 +10,7 @@ public interface CluvInterfaceRepository {
 	Cluv findById(Long id);
 	List<Cluv> findAll();
 	Cluv update(Cluv updateCluv);
-	void delete(Long id);	
+	void remove(Long id);
+	void deleteAll();
 	
 }

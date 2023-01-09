@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import himedia.finalproject.domain.Cluv;
-import himedia.finalproject.repository.CluvInterfaceRepository;
+import himedia.finalproject.service.CluvService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,14 +22,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CluvController {
 	
-	private final CluvInterfaceRepository repository;
+	private final CluvService service;
 	
 	/**
 	 * [게시판 목록 조회] 
 	 */
 	@GetMapping
 	public String cluvs(Model model) {
-		List<Cluv> cluvs = repository.findAll();
+		List<Cluv> cluvs = service.findAllCluv();
 		model.addAttribute("cluvs", cluvs);
 		return "menu/cluv/cluvs";
 	}
@@ -39,14 +39,14 @@ public class CluvController {
 	 */
 	@GetMapping("/{cluvId}")
 	public String cluvPage(@PathVariable Long cluvId, Model model) {
-		Cluv cluv = repository.findById(cluvId);
+		Cluv cluv = service.findCluvId(cluvId);
 		model.addAttribute("cluv", cluv);
 		return "menu/cluv/cluv";
 	}
 	
 	@PostMapping("/add")
 	public String addCluv(@ModelAttribute Cluv cluv, RedirectAttributes attributes) {
-		Cluv savedCluv = repository.save(cluv);
+		Cluv savedCluv = service.write(cluv);
 		log.info("savedCluv id {}", savedCluv.getCluvId());
 		log.info("savedCluv title {}", savedCluv.getTitle());
 		log.info("savedCluv contents {}", savedCluv.getContents());
@@ -56,23 +56,21 @@ public class CluvController {
 	
 	@GetMapping("delete/{cluvId}")
 	public String deleteCluv(@PathVariable Long cluvId) {
-		repository.delete(cluvId);
+		service.deleteCluv(cluvId);
 		return "redirect:/menu/cluv";
 	}
 	
 	@GetMapping("/edit/{cluvId}")
 	public String editCluv(@PathVariable Long cluvId, Model model) {
-		Cluv cluv = repository.findById(cluvId);
+		Cluv cluv = service.findCluvId(cluvId);
 		model.addAttribute("cluv", cluv);
 		return "menu/cluv/cluvEdit";
 	}
 	
 	@PostMapping("/edit/{cluvId}")
 	public String updateCluv(@PathVariable Long cluvId, @ModelAttribute Cluv cluv) {
-		repository.update(cluv);
+		service.EditCluv(cluv);
 		return "redirect:/menu/cluv/{cluvId}";
-		
-		
 	}
 
 }

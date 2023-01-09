@@ -34,6 +34,31 @@ public class CategoryController {
 		return "menu/category/things";
 	}
 	
+	@GetMapping("/mypage")
+	public String mypage() {
+		return "menu/mypage/mypage";
+	}
+	
+	@GetMapping("/mypage/mycloset")
+	public String mycloset() {
+		return "menu/mypage/mycloset";
+	}
+	
+	@GetMapping("/mypage/mycluvs")
+	public String mycluvs() {
+		return "menu/mypage/mycluvs";
+	}
+	
+	@GetMapping("/mypage/follow")
+	public String follow() {
+		return "menu/mypage/follow";
+	}
+	
+	@GetMapping("/mypage/setting")
+	public String setting() {
+		return "menu/mypage/setting";
+	}
+	
 	@GetMapping("/cluv/write")
 	public String cluvWrite() {
 		return "menu/cluv/cluvWrite";
