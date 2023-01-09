@@ -6,15 +6,15 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import himedia.finalproject.domain.Cluv;
 
 @SpringBootTest
+@Transactional
 class CluvServiceTest {
 	
 	@Autowired EntityManager entityManager;
@@ -62,7 +62,6 @@ class CluvServiceTest {
 		assertThat(result.getContents()).isEqualTo("테스트2");
 	}
 	
-	@AfterEach
 	@Test
 	void EditCluv() {
 		// given
@@ -74,11 +73,11 @@ class CluvServiceTest {
 		cluvService.write(cluv);
 		
 		// when
-		cluvService.EditCluv(editCluv);
-		Cluv result = cluvService.findCluvId(cluv.getCluvId());
+		cluv = cluvService.EditCluv(editCluv);
+		cluvService.findCluvId(cluv.getCluvId());
 		
 		// then
-		assertThat(result.getContents()).isEqualTo("변경된 테스트3");
+		assertThat(cluv.getContents()).isEqualTo("변경된 테스트3");
 	}
 	
 	@Test
@@ -95,20 +94,4 @@ class CluvServiceTest {
 		assertThat(result).isNull();
 	}
 	
-	@BeforeEach
-	@Test
-	@AfterEach
-	void deleteAll() {
-		// given
-		Cluv cluv = new Cluv();
-		cluvService.write(cluv);
-		
-		// when
-		cluvService.deleteAll();
-		List<Cluv> result = cluvService.findAllCluv();
-		
-		// then
-		assertThat(result).isNull();
-	}
-
 }

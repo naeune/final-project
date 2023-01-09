@@ -1,6 +1,7 @@
 package himedia.finalproject.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
@@ -32,6 +33,14 @@ public class JPACluvRepository implements CluvInterfaceRepository {
 	}
 
 	@Override
+	public Optional<Cluv> findByTitle(String title) {
+		List<Cluv> result = em.createQuery("select c from Cluv c where c.title = :title", Cluv.class)
+								.setParameter("title", title)
+								.getResultList();
+		return result.stream().findAny();
+	}
+
+	@Override
 	public List<Cluv> findAll() {
 		log.info("게시글 목록 조회");
 		return em.createQuery("select c from Cluv c", Cluv.class).getResultList();
@@ -41,7 +50,7 @@ public class JPACluvRepository implements CluvInterfaceRepository {
 	public void remove(Long id) {
 		em.remove(findById(id));
 	}
-	
+
 	@Override
 	public Cluv update(Cluv updateCluv) {
 		Cluv cluv = em.find(Cluv.class, updateCluv.getCluvId());
@@ -50,11 +59,5 @@ public class JPACluvRepository implements CluvInterfaceRepository {
 		cluv.setModifiedTime(updateCluv.getModifiedTime());
 		return cluv;
 	}
-	
-	@Override
-	public void deleteAll() {
-		em.createQuery("delete c from Cluv c");
-	}
-	
-	
+
 }

@@ -77,19 +77,20 @@ class JPACluvRepositoryTest {
 	@Test
 	void update() {
 		// given
-		Cluv cluv = new Cluv();
-		cluv.setTitle("변경 전");
-		repository.save(cluv);
 		Cluv updateCluv = new Cluv();
 		updateCluv.setTitle("변경 후");
 		repository.save(updateCluv);
+		Cluv cluv = new Cluv();
+		cluv.setTitle("변경 전");
+		repository.save(cluv);
+		
 		
 		// when
-		Cluv result = repository.update(updateCluv);
-		// Cluv result = repository.findById(cluv.getCluvId());
+		cluv = repository.update(updateCluv);
+		repository.findByTitle(cluv.getTitle()).get();
 		
 		// then
-		assertThat(result.getTitle()).isEqualTo("변경 후");
+		assertThat(cluv.getTitle()).isEqualTo("변경 후");
 	}
 
 }

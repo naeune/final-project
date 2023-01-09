@@ -33,8 +33,5 @@ public class CluvService {
 	public void deleteCluv(Long id) {
 		repository.remove(id);
 	}
-	
-	public void deleteAll() {
-		repository.deleteAll();
-	}
+
 }

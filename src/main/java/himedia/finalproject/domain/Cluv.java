@@ -41,5 +41,5 @@ public class Cluv extends Timestamped {
 		this.title = title;
 		this.contents = contents;
 	}
-	
+
 }
