@@ -52,5 +52,13 @@ public class JPACluvRepository {
 		cluv.setModifiedTime(updateCluv.getModifiedTime());
 		return cluv;
 	}
+	
+	public List<Cluv> pagination() {
+		List<Cluv> cluvs = em.createQuery("select c from c", Cluv.class)
+			.setFirstResult(0)
+			.setMaxResults(10)
+			.getResultList();
+		return cluvs;
+	}
 
 }
