@@ -63,6 +63,20 @@ class CluvServiceTest {
 	}
 	
 	@Test
+	void searchCluv() {
+		// given
+		Cluv cluv = new Cluv();
+		cluv.setTitle("제목");
+		cluvService.write(cluv);
+		
+		// when
+		List<Cluv> result = cluvService.searchCluv(cluv.getTitle());
+		
+		// then
+		assertThat(result).isNotNull();
+	}
+	
+	@Test
 	void EditCluv() {
 		// given
 		Cluv editCluv = new Cluv();

@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,6 +28,7 @@ constraint pk_cluv_no primary key(cluv_id)
 
 @Entity
 @Setter @Getter
+@Builder
 @NoArgsConstructor
 @Table(name = "cluv")
 public class Cluv extends Timestamped {
@@ -38,6 +40,12 @@ public class Cluv extends Timestamped {
 	private String contents;
 	
 	public Cluv(String title, String contents) {
+		this.title = title;
+		this.contents = contents;
+	}
+	
+	public Cluv(Long id, String title, String contents) {
+		this.cluvId = id;
 		this.title = title;
 		this.contents = contents;
 	}

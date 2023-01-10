@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import himedia.finalproject.domain.Cluv;
@@ -71,6 +72,13 @@ public class CluvController {
 	public String updateCluv(@PathVariable Long cluvId, @ModelAttribute Cluv cluv) {
 		service.EditCluv(cluv);
 		return "redirect:/menu/cluv/{cluvId}";
+	}
+	
+	@GetMapping("/search")
+	public String search(@RequestParam(value="title", required=false) String title, Model model) {
+		List<Cluv> searchLists = service.searchCluv(title);
+		model.addAttribute("searchLists", searchLists);
+		return "menu/cluv/resultPage";
 	}
 
 }

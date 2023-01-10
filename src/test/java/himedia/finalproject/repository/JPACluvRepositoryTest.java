@@ -61,6 +61,20 @@ class JPACluvRepositoryTest {
 	}
 	
 	@Test
+	void findByTitle() {
+		// given
+		Cluv cluv = new Cluv();
+		cluv.setTitle("안녕하세요");
+		repository.save(cluv);
+		
+		// when
+		List<Cluv> result = repository.findByTitle("안녕");
+		
+		// then
+		assertThat(result).isNotNull();
+	}
+	
+	@Test
 	void remove() {
 		// given
 		Cluv cluv = new Cluv();
@@ -87,7 +101,7 @@ class JPACluvRepositoryTest {
 		
 		// when
 		cluv = repository.update(updateCluv);
-		repository.findByTitle(cluv.getTitle()).get();
+		repository.findByTitle(cluv.getTitle());
 		
 		// then
 		assertThat(cluv.getTitle()).isEqualTo("변경 후");

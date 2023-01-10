@@ -1,7 +1,6 @@
 package himedia.finalproject.repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
@@ -16,42 +15,36 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Transactional
 @Slf4j
-public class JPACluvRepository implements CluvInterfaceRepository {
+public class JPACluvRepository {
 
 	private final EntityManager em;
 
-	@Override
 	public Cluv save(Cluv cluv) {
 		log.info("게시글 저장");
 		em.persist(cluv);
 		return cluv;
 	}
 
-	@Override
 	public Cluv findById(Long id) {
 		return em.find(Cluv.class, id);
 	}
 
-	@Override
-	public Optional<Cluv> findByTitle(String title) {
-		List<Cluv> result = em.createQuery("select c from Cluv c where c.title = :title", Cluv.class)
-								.setParameter("title", title)
+	public List<Cluv> findByTitle(String title) {
+		List<Cluv> result = em.createQuery("select c from Cluv c where c.title like :title", Cluv.class)
+								.setParameter("title", "%"+title+"%")
 								.getResultList();
-		return result.stream().findAny();
+		return result;
 	}
 
-	@Override
 	public List<Cluv> findAll() {
 		log.info("게시글 목록 조회");
 		return em.createQuery("select c from Cluv c", Cluv.class).getResultList();
 	}
 
-	@Override
 	public void remove(Long id) {
 		em.remove(findById(id));
 	}
 
-	@Override
 	public Cluv update(Cluv updateCluv) {
 		Cluv cluv = em.find(Cluv.class, updateCluv.getCluvId());
 		cluv.setTitle(updateCluv.getTitle());
