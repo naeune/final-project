@@ -34,6 +34,11 @@ public class CategoryController {
 		return "menu/category/things";
 	}
 	
+	@GetMapping("/cloes")
+	public String cloes() {
+		return "menu/cloes/cloes";
+	}
+	
 	@GetMapping("/mypage")
 	public String mypage() {
 		return "menu/mypage/mypage";
